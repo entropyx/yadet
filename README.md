@@ -1,2 +1,2 @@
-# yadet
+# YADET
 Yet Another Developer Extraction Tool
