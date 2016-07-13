@@ -6,11 +6,8 @@ import (
 )
 
 func main() {
-  client := github.NewClient(nil)
-  usr, _, err := client.Users.Get("arturodz")
-  if err != nil {
-    print(err)
+  if err := cmd.RootCmd.Execute(); err != nil {
+    fmt.Println(err)
+    os.Exit(-1)
   }
-
-  fmt.Printf(usr.String());
 }
