@@ -17,8 +17,9 @@ package cmd
 import (
 	"fmt"
 
-  "github.com/entropyx/yadet/client"
-  "github.com/entropyx/yadet"
+  "github.com/google/go-github/github"
+  // "github.com/entropyx/yadet/client"
+  // "github.com/entropyx/yadet/cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -30,12 +31,19 @@ var searchCmd = &cobra.Command{
     `,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
+    client := github.NewClient(nil)
+    users, _, err := client.Users.ListAll(nil)
+    if err != nil {
+      fmt.Println(err)
+    }
+
+    fmt.Print(users)
 		fmt.Println("search called")
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(searchCmd)
+	Yadet.AddCommand(searchCmd)
 
 	// Here you will define your flags and configuration settings.
 
