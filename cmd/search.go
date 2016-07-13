@@ -17,36 +17,34 @@ package cmd
 import (
 	"fmt"
 
+  "github.com/entropyx/yadet/client"
+  "github.com/entropyx/yadet"
 	"github.com/spf13/cobra"
 )
-
-const (
-	langDesc = `Search for users that have repositories that match a certain language.`
-	placeDesc = `Filter users by the location indicated in their profile.`
-	followersRateDesc = `Filter users that have at least the selected followers/following rate.`
-)
-
-var lang string
-var place string
-var followersRate float64
 
 // searchCmd represents the search command
 var searchCmd = &cobra.Command{
 	Use:   "search",
-	Short: "Look for users by the given parameters.",
-	Long: ``,
+	Short: "Search developers",
+	Long: `Search developers using several filters. For example:
+    `,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
 		fmt.Println("search called")
-		fmt.Println(lang)
-		fmt.Println(place)
-		fmt.Println(followersRate)
 	},
 }
 
 func init() {
-	Yadet.AddCommand(searchCmd)
-	searchCmd.Flags().StringVarP(&lang, "lang", "l", "Go", langDesc)
-	searchCmd.Flags().StringVarP(&place, "place", "p", "Mexico", placeDesc)
-	searchCmd.Flags().Float64Var(&followersRate, "followers_rate", 0, followersRateDesc)
+	RootCmd.AddCommand(searchCmd)
+
+	// Here you will define your flags and configuration settings.
+
+	// Cobra supports Persistent Flags which will work for this command
+	// and all subcommands, e.g.:
+	// searchCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	// Cobra supports local flags which will only run when this command
+	// is called directly, e.g.:
+	// searchCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 }
